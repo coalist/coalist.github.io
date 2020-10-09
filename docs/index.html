@@ -3,13 +3,10 @@
 
 <head>
     <!-- Fonts: Ubuntu Bold & Medium, Raleway Regular & Bold -->
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Ubuntu:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Ubuntu:wght@500;700;900&display=swap" rel="stylesheet">
 
     <!-- Fonts: Pacifico (coming soon) -->
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <style type="text/css">
         :root {
@@ -17,78 +14,188 @@
             --color-orange: #fe2e01;
             --color-white: #ffffff;
             --primary: pink;
+            --dot-size: 1px;
+        }
+
+        *, ::after, ::before {
+            box-sizing: inherit;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        html {
+            box-sizing: border-box;
+            font-family: Raleway, sans-serif;
+            font-weight: 400;  /* Regular */
+            font-size: 20px;
+            line-height: 1.4;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            background-color: var(--color-black);
-            color: var(--color-white);
+            background-color: var(--color-white);
+            color: var(--color-black);
+            position: relative;
+            margin: 0;
+            padding: 0;
         }
 
-        section {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
+        h1, h2, h3, h4, h5, h6 {
+            font-family: Ubuntu, sans-serif;
+            font-weight: 500;  /* Medium */
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        h1 {
+            font-weight: 700; /* Bold */
+            text-transform: uppercase;
         }
 
         a {
             color: var(--color-orange);
         }
 
-        .heading {
-            color: var(--color-white);
-            font-size: 4rem;
-        }
-
-        .heading span {
-            color: var(--color-orange);
-        }
-
-        .logo-max-width {
-            max-width: 500px;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Ubuntu', sans-serif;
-        }
-
-        h1 {
-            font-weight: 700; /* Bold */
-        }
-
-        h2, h3, h4, h5, h6 {
-            font-weight: 500;  /* Medium */
-        }
-
-        body, p {
-            font-family: 'Raleway', sans-serif;
-            font-weight: 400;  /* Regular */
-            font-size: 20px;
-        }
-
-        header {
-            background: var(--color-white);
-            padding: 10px 20px;
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            background-color: var(--color-white);
+            padding: 10px 0;
         }
 
-        header img {
-            height: 64px;
+        .logo {
+            height: 80px;
         }
 
-        header .coming-soon {
-            font-family: 'Pacifico', cursive;
-            color: var(--color-orange);
+        .logo-animation {
+            width: 100%;
+            max-width: 500px;
+            position: relative;
         }
 
-        footer  {
-            padding: 50px;
+        .logo-animation:before {
+            display: block;
+            float: left;
+            content: "";
+            width: 0;
+            height: 0;
+            padding-bottom: 100%;
+        }
+
+        .video {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+
+        .coming-soon {
+            margin-left: auto;
             background: var(--color-orange);
+            color: var(--color-white);
+            padding: 20px;
+            font-size: 13px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .text-box {
+            filter: drop-shadow();
+            padding: 10px;
+            background: var(--color-white);
+            margin: 0;
+            max-width: 800px;
+        }
+
+        .heading {
+            margin-top: 100px;
+            font-size: 90px;
+            text-align: center;
+        }
+
+        .sub-heading {
+            text-transform: uppercase;
+            font-weight: 700;
+            font-family: Ubuntu, sans-serif;
+            line-height: 1.1;
+            text-align: center;
+        }
+
+        .background {
+            display: block;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+        }
+
+        .background > svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .background-dot {
+            stroke: var(--color-black);
+            stroke-width: var(--dot-size);
+            stroke-linecap: round;
+            transition: stroke-width 1s ease-in-out;
+            will-change: stroke-width;
+        }
+
+        .footer  {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            background: var(--color-white);
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 13px;
+            font-family: Ubuntu, sans-serif;
+        }
+
+        @media screen and (max-width: 900px) {
+            .heading {
+                font-size: 40px;
+            }
+
+            .logo {
+                height: 50px;
+            }
+
+            .logo-animation {
+                max-width: 300px;
+            }
+
+            .coming-soon {
+                padding: 5px;
+                font-size: 13px;
+            }
         }
 
     </style>
@@ -108,47 +215,95 @@
     <title>coalist - team of IT specialists based in Z&uuml;rich</title>
 </head>
 <body>
-
-    <header>
-        <img src="assets/logo1.png" alt="coalist">
-        <h2 class="coming-soon">Coming soon...</h2>
+    <div class="background"></div>
+    <header class="header">
+        <img class="logo" src="assets/coalist-logo.svg" alt="coalist logo">
+        <span class="coming-soon">Coming soon...</span>
     </header>
 
-    <main>
-        <section>
+    <main class="container">
+        <h1 class="heading text-box">We are <span class="brand">coalist</span></h1>
+        <p class="sub-heading text-box">A team of dedicated IT specialists based in Z&uuml;rich</p>
 
-          <div>
+        <!-- Animation -->
+        <div class="logo-animation">
+            <video class="video" width="100%" height="100%" autoplay="autoplay" muted="muted" playsinline="playsinline">
+                <source src="assets/animated-logo.mp4" type="video/mp4">
+            </video>
+        </div>
 
-            <h1 class="heading text-center mx-4">We are the <span>coalist</span></h1>
-            <h2 class="text-center mx-4">A team of dedicated IT specialists and experts based in Z&uuml;rich</h2>
-
-            <!-- Animation -->
-            <div class="embed-responsive embed-responsive-1by1 logo-max-width mx-auto">
-                <video class="embed-responsive-item" width="500" height="500" autoplay="autoplay" muted="muted" playsinline="playsinline">
-                    <source src="assets/animated-logo.mp4" type="video/mp4">
-                    <source src="assets/animated-logo.ogg" type="video/ogg">
-                    <img src="assets/logo3.svg" class="img-fluid w-100 mx-auto d-block logo-max-width" alt="coalist logo">
-                </video>
-            </div>
-
-
-            <!-- Coming soon message -->
-            <div class="d-flex flex-column justify-content-center align-items-center mx-5">
-                <p class="text-center">Do not hesitate to reach us here at <a href="mailto:hello@coalist.ch">hello@coalist.ch</a><br>
-                    to discuss what kind of valuable expertise we could provide to help you make your project a success!</p>
-            </div>
-          </div>
-
-
-        </section>
+        <!-- Coming soon message -->
+        <div class="text-box">
+            <p>Let's discuss how we can help you to make your project a success!<br>Reach out to us at <a href="mailto:hello@coalist.ch">hello@coalist.ch</a></p>
+        </div>
     </main>
 
-    <footer>
-        <p class="m-0 p-0">© coalist <span id="year"></span></p>
+    <footer class="footer">
+        <p>❤️ coalist <span id="year"></span></p>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@latest/dist/svg.min.js"></script>
     <script>
-        const year$ = document.querySelector('#year');
-        year$.textContent = new Date().getFullYear();
+        (() => {
+            const year = document.querySelector('#year');
+            year.textContent = new Date().getFullYear();
+
+            const background = document.querySelector('.background');
+            let meshSize = 100;
+            let maxDotSize = 10;
+            let minDotSize = 1;
+            let dotChangeProbability = 0.1;
+            let dotChangeIterations = 20;
+            let countHorizontal = Math.floor(window.innerWidth / meshSize);
+            let countVertical = Math.floor(window.innerHeight / meshSize);
+            let dotElements = null;
+
+            const debounce = (callback, wait) => {
+                let timeout;
+                return (...args) => {
+                    const context = this;
+                    clearTimeout(timeout);
+                    timeout = setTimeout(() => callback.apply(context, args), wait);
+                };
+            }
+
+            const createDots = () => {
+                let dotsSvg = '';
+                for (let i = 0; i < countHorizontal; i++) {
+                    for (let j = 0; j < countVertical; j++) {
+                        dotsSvg = `${dotsSvg}<line x1="${i * meshSize}" x2="${i * meshSize + 0.01}" y1="${j * meshSize}" y2="${j * meshSize}" class="background-dot"></line>`;
+                    }
+                }
+                return dotsSvg;
+            }
+
+            const startUpdateBackground = () => {
+                for (let i = 0; i < dotChangeIterations; i++) {
+                    if (Math.random() < dotChangeProbability) {
+                        dotElements[Math.round(Math.random() * (dotElements.length - 1))].style.setProperty('--dot-size', `${Math.round(Math.random() * maxDotSize + minDotSize)}px`);
+                    }
+                }
+                requestAnimationFrame(startUpdateBackground);
+            };
+
+            const initializeBackground = () => {
+                meshSize = window.innerWidth < 900 ? 20 : 60;
+                maxDotSize = window.innerWidth < 900 ? 5 : 10;
+                countHorizontal = Math.round(window.innerWidth / meshSize);
+                countVertical = Math.round(window.innerHeight / meshSize);
+                background.innerHTML = `
+                    <svg width="100%" height="100%">
+                        ${createDots()}
+                    </svg>
+                `;
+                dotElements = Array.from(document.querySelectorAll('.background-dot'));
+            };
+
+            initializeBackground();
+            window.addEventListener('resize', debounce(() => initializeBackground(), 300));
+
+            startUpdateBackground();
+        })();
+        
     </script>
 </body>
 </html>
